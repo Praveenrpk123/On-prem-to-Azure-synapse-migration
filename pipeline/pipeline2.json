@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "MySqlSource",
-						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"kafka\";"
+						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"kafka\""
 					},
 					"dataset": {
 						"referenceName": "MySqlTable12",
