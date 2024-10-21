@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfmigrationmysql"
+		},
+		"ADLS1_accountKey": {
+			"value": ""
+		},
+		"ADLS1_properties_typeProperties_url": {
+			"value": "https://migrationstrdls.dfs.core.windows.net/"
+		},
+		"AKV_MYSQL_properties_typeProperties_baseUrl": {
+			"value": "https://migration-k-v.vault.azure.net/"
+		},
+		"MySqlLS_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"MySqlLS_properties_typeProperties_database": {
+			"value": "kafka"
+		},
+		"MySqlLS_properties_typeProperties_username": {
+			"value": "root"
+		}
+	}
+}
