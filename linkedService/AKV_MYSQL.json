@@ -1,0 +1,10 @@
+{
+	"name": "AKV_MYSQL",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://migration-k-v.vault.azure.net/"
+		}
+	}
+}
