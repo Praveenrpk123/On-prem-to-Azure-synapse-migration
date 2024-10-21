@@ -20,7 +20,7 @@
 						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"kafka\";"
 					},
 					"dataset": {
-						"referenceName": "MySqlTable",
+						"referenceName": "MySqlTable12",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false

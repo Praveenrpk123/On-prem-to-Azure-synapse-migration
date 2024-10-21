@@ -1,0 +1,12 @@
+{
+	"name": "MySqlTable12",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": []
+	}
+}
