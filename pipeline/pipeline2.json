@@ -15,6 +15,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "MySqlSource",
+						"query": {
+							"value": "@concat('select distinct Table_Schema, Table_name from information_schema.columns where table_schema = \"', 'kafka\"')",
+							"type": "Expression"
+						}
+					},
+					"dataset": {
+						"referenceName": "MySqlTable",
+						"type": "DatasetReference"
+					},
 					"firstRowOnly": false
 				}
 			},
