@@ -50,31 +50,48 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"source": {
+									"type": "MySqlSource",
+									"query": {
+										"value": "@concat('select * from ',item().Table_Schema ,'.',item().Table_Name)",
+										"type": "Expression"
+									}
+								},
 								"sink": {
-									"type": "ParquetSink",
+									"type": "DelimitedTextSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings",
 										"copyBehavior": "FlattenHierarchy"
 									},
 									"formatSettings": {
-										"type": "ParquetWriteSettings"
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
+							"inputs": [
+								{
+									"referenceName": "MySqlTable",
+									"type": "DatasetReference"
+								}
+							],
 							"outputs": [
 								{
-									"referenceName": "Dest",
+									"referenceName": "MySqlADLS",
 									"type": "DatasetReference",
 									"parameters": {
-										"Schema_name": {
-											"value": "@item().Table_Schema\r\n",
-											"type": "Expression"
-										},
-										"Table_name": {
-											"value": "@item().Table_Name",
-											"type": "Expression"
-										}
+										"Schema": "@item().Table_Schema",
+										"Table": "@item().Table_Name"
 									}
 								}
 							]

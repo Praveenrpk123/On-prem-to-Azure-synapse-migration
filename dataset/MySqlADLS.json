@@ -20,6 +20,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Table",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().Schema,'/',dataset().Table)",
+					"type": "Expression"
+				},
 				"fileSystem": "bronze"
 			},
 			"columnDelimiter": ",",
