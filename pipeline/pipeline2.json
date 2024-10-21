@@ -15,14 +15,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "MySqlSource",
-						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"kafka\""
-					},
-					"dataset": {
-						"referenceName": "MySqlTable12",
-						"type": "DatasetReference"
-					},
 					"firstRowOnly": false
 				}
 			},
@@ -58,13 +50,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "MySqlSource",
-									"query": {
-										"value": "@concat('select * from ',item().Table_schema,'.',item().Table_name)",
-										"type": "Expression"
-									}
-								},
 								"sink": {
 									"type": "ParquetSink",
 									"storeSettings": {
@@ -75,22 +60,8 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
-							"inputs": [
-								{
-									"referenceName": "MySqlTables",
-									"type": "DatasetReference"
-								}
-							],
 							"outputs": [
 								{
 									"referenceName": "Dest",
