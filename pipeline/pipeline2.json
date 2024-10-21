@@ -17,54 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "MySqlSource",
-						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"TableName\""
+						"query": "Select Distinct Table_schema, Table_Name from information_schema.columns where table_schema = \"kafka\";"
 					},
 					"dataset": {
 						"referenceName": "MySqlTable",
 						"type": "DatasetReference"
 					}
-				}
-			},
-			{
-				"name": "ForEach1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "MySql_to_bronze",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"activities": [
-						{
-							"name": "Copy data1",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "MySqlSource"
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "MySqlTable",
-									"type": "DatasetReference"
-								}
-							]
-						}
-					]
 				}
 			}
 		],
