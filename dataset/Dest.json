@@ -1,0 +1,29 @@
+{
+	"name": "Dest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Schema_name": {
+				"type": "string",
+				"defaultValue": "@item().Table_Schema"
+			},
+			"Table_name": {
+				"type": "string",
+				"defaultValue": "@item().Table_Name"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
