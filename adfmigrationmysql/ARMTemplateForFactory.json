@@ -140,7 +140,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": "copydatapath"
+						"fileSystem": "bronze"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
