@@ -94,7 +94,17 @@
 							"outputs": [
 								{
 									"referenceName": "Dest",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Schema_name": {
+											"value": "@item().Table_schema",
+											"type": "Expression"
+										},
+										"Table_name": {
+											"value": "@item().Table_Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}

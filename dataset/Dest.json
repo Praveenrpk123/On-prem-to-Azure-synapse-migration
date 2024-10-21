@@ -18,6 +18,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Table_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().Schema_name,'/',dataset().Table_name)",
+					"type": "Expression"
+				},
 				"fileSystem": "bronze"
 			},
 			"compressionCodec": "snappy"
