@@ -1,0 +1,36 @@
+{
+	"name": "Adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Schema": {
+				"type": "string",
+				"defaultValue": "@item().Table_Schema"
+			},
+			"Table": {
+				"type": "string",
+				"defaultValue": "@item().Table_Name"
+			}
+		},
+		"annotations": [],
+		"type": "Avro",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Table",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('Bronze/',dataset().Schema,'/',dataset().Table)",
+					"type": "Expression"
+				},
+				"fileSystem": "fintech"
+			}
+		},
+		"schema": []
+	}
+}
