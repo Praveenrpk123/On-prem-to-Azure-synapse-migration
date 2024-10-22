@@ -1,0 +1,35 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Schema": {
+				"type": "string"
+			},
+			"Table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Table",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('Bronze/',dataset().Schema,'/',dataset().Table)",
+					"type": "Expression"
+				},
+				"fileSystem": "fintech"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
