@@ -324,7 +324,7 @@
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@concat('bronze/',dataset().Schema,'/',dataset().Table)",
+							"value": "@concat('Bronze/',dataset().Schema,'/',dataset().Table)",
 							"type": "Expression"
 						},
 						"fileSystem": "fintech"
