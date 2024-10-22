@@ -75,13 +75,13 @@
 									}
 								},
 								"sink": {
-									"type": "ParquetSink",
+									"type": "AvroSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings",
 										"copyBehavior": "FlattenHierarchy"
 									},
 									"formatSettings": {
-										"type": "ParquetWriteSettings"
+										"type": "AvroWriteSettings"
 									}
 								},
 								"enableStaging": false,
@@ -102,7 +102,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "Parquet1",
+									"referenceName": "Adls",
 									"type": "DatasetReference",
 									"parameters": {
 										"Schema": {
