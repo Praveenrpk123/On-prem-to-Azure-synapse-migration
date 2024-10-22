@@ -116,13 +116,13 @@
 											}
 										},
 										"sink": {
-											"type": "ParquetSink",
+											"type": "AvroSink",
 											"storeSettings": {
 												"type": "AzureBlobFSWriteSettings",
 												"copyBehavior": "FlattenHierarchy"
 											},
 											"formatSettings": {
-												"type": "ParquetWriteSettings"
+												"type": "AvroWriteSettings"
 											}
 										},
 										"enableStaging": false,
@@ -144,7 +144,7 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "Parquet1",
+											"referenceName": "Adls",
 											"type": "DatasetReference",
 											"parameters": {
 												"Schema": {
@@ -170,7 +170,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/MySqlTable')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet1')]"
+				"[concat(variables('factoryId'), '/datasets/Adls')]"
 			]
 		},
 		{
@@ -481,6 +481,47 @@
 						"fileSystem": "fintech"
 					},
 					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Adls')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Schema": {
+						"type": "string",
+						"defaultValue": "@item().Table_Schema"
+					},
+					"Table": {
+						"type": "string",
+						"defaultValue": "@item().Table_Name"
+					}
+				},
+				"annotations": [],
+				"type": "Avro",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().Table",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat('Bronze/',dataset().Schema,'/',dataset().Table)",
+							"type": "Expression"
+						},
+						"fileSystem": "fintech"
+					}
 				},
 				"schema": []
 			},
