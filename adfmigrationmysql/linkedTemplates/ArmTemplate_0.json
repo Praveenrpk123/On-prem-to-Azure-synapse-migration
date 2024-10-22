@@ -278,7 +278,7 @@
 						}
 					},
 					{
-						"name": "ForEach",
+						"name": "Looping_Lookup",
 						"type": "ForEach",
 						"dependsOn": [
 							{
@@ -297,7 +297,7 @@
 							"isSequential": true,
 							"activities": [
 								{
-									"name": "Copydata",
+									"name": "Copy_data",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
@@ -311,6 +311,12 @@
 									"typeProperties": {
 										"source": {
 											"type": "MySqlSource",
+											"additionalColumns": [
+												{
+													"name": "Active_status",
+													"value": "\"Y\""
+												}
+											],
 											"query": {
 												"value": "@concat('select * from ',item().Table_Schema ,'.',item().Table_Name)",
 												"type": "Expression"
