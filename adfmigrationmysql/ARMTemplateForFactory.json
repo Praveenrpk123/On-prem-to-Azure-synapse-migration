@@ -107,7 +107,7 @@
 											"additionalColumns": [
 												{
 													"name": "Active_status",
-													"value": "\"Y\""
+													"value": "Y"
 												}
 											],
 											"query": {
@@ -116,15 +116,13 @@
 											}
 										},
 										"sink": {
-											"type": "DelimitedTextSink",
+											"type": "ParquetSink",
 											"storeSettings": {
 												"type": "AzureBlobFSWriteSettings",
 												"copyBehavior": "FlattenHierarchy"
 											},
 											"formatSettings": {
-												"type": "DelimitedTextWriteSettings",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
+												"type": "ParquetWriteSettings"
 											}
 										},
 										"enableStaging": false,
@@ -146,11 +144,17 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "MySqlADLS",
+											"referenceName": "Parquet1",
 											"type": "DatasetReference",
 											"parameters": {
-												"Schema": "@item().Table_Schema",
-												"Table": "@item().Table_Name"
+												"Schema": {
+													"value": "@item().Table_Schema",
+													"type": "Expression"
+												},
+												"Table": {
+													"value": "@item().Table_Name",
+													"type": "Expression"
+												}
 											}
 										}
 									]
@@ -166,7 +170,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/MySqlTable')]",
-				"[concat(variables('factoryId'), '/datasets/MySqlADLS')]"
+				"[concat(variables('factoryId'), '/datasets/Parquet1')]"
 			]
 		},
 		{
@@ -443,6 +447,46 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Schema": {
+						"type": "string"
+					},
+					"Table": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().Table",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat('Bronze/',dataset().Schema,'/',dataset().Table)",
+							"type": "Expression"
+						},
+						"fileSystem": "fintech"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS1')]"
+			]
 		}
 	]
 }
