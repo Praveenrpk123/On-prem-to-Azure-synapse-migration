@@ -18,7 +18,7 @@
 					"source": {
 						"type": "MySqlSource",
 						"query": {
-							"value": "@concat('select distinct Table_Schema, Table_name from information_schema.columns where table_schema = \"', 'kafka\"')",
+							"value": "@concat('select distinct Table_Schema, Table_name from information_schema.columns where table_schema = \"', 'fintech\"')",
 							"type": "Expression"
 						}
 					},
