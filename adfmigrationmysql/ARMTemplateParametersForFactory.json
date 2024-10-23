@@ -8,11 +8,17 @@
 		"ADLS1_accountKey": {
 			"value": ""
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
 		"ADLS1_properties_typeProperties_url": {
 			"value": "https://migrationstrdls.dfs.core.windows.net/"
 		},
 		"AKV_MYSQL_properties_typeProperties_baseUrl": {
 			"value": "https://migration-k-v.vault.azure.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "1022-110649-jr72rykr"
 		},
 		"MySqlLS_properties_typeProperties_server": {
 			"value": "localhost"
